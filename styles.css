@@ -1,0 +1,453 @@
+/* Human Ashtray — funeral-home-meets-grandma's-sitting-room */
+
+:root {
+  --cream: #f3ebdf;
+  --ivory: #fbf7f0;
+  --mauve: #9c7a83;
+  --mauve-deep: #6b4c56;
+  --rose: #d9bcc0;
+  --sage: #8c9a82;
+  --slate: #545b63;
+  --ink: #2f2829;
+  --gold: #a8894f;
+  --gold-light: #cdb68a;
+  --serif: "Cormorant Garamond", "Garamond", Georgia, serif;
+  --script: "Pinyon Script", "Snell Roundhand", cursive;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; overflow-x: clip; } /* the blurred wallpaper bleeds past the edges; never let that cause sideways scrolling */
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 20px;
+  line-height: 1.6;
+  font-variant-numeric: lining-nums; /* even, readable digits for dates and serials */
+  position: relative;
+}
+
+/* sympathy lilies: soft-focus photo on the right edge, its mirror image on the left,
+   both fading into cream toward the middle so the text stays readable */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  top: -20px;
+  bottom: -20px;
+  width: 50%;
+  background:
+    linear-gradient(to left,
+      rgba(243, 235, 223, 0) 0%,
+      rgba(243, 235, 223, 0.05) 35%,
+      rgba(243, 235, 223, 0.65) 75%,
+      var(--cream) 100%),
+    url("images/lilies.jpg") right center / cover no-repeat;
+  filter: blur(1.5px) saturate(1.15);
+  pointer-events: none;
+  z-index: -1; /* behind everything, without creating layers that stop the logo blending */
+}
+body::before { right: -20px; }
+body::after { left: -20px; transform: scaleX(-1); }
+
+img { max-width: 100%; display: block; }
+
+a { color: var(--mauve-deep); }
+
+/* ---------- header ---------- */
+
+.site-header {
+  text-align: center;
+  padding: 36px 16px 8px;
+}
+
+.site-header .logo {
+  width: min(440px, 88vw);
+  margin: 0 auto;
+  mix-blend-mode: multiply; /* melts the logo's white background into the cream */
+  filter: brightness(1.05); /* pushes its almost-white background to pure white so no box shows */
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px 28px;
+  padding: 14px 16px;
+  margin: 0 auto;
+  max-width: 980px;
+  border-top: 1px solid var(--gold-light);
+  border-bottom: 1px solid var(--gold-light);
+  font-size: 15px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.site-nav a { color: var(--slate); text-decoration: none; }
+.site-nav a:hover { color: var(--mauve-deep); }
+
+/* ---------- shared section styling ---------- */
+
+.section {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 64px 16px;
+}
+
+.eyebrow {
+  font-family: var(--script);
+  font-size: 44px;
+  color: var(--mauve);
+  text-align: center;
+  margin: 0;
+  line-height: 1.1;
+}
+
+h2 {
+  font-weight: 500;
+  font-size: 38px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--mauve-deep);
+  margin: 4px 0 8px;
+}
+
+.flourish {
+  display: block;
+  margin: 0 auto 36px;
+  width: 220px;
+  height: 18px;
+  background:
+    radial-gradient(circle, var(--gold) 3px, transparent 3.5px) center / 18px 18px no-repeat,
+    linear-gradient(var(--gold-light), var(--gold-light)) left center / 42% 1px no-repeat,
+    linear-gradient(var(--gold-light), var(--gold-light)) right center / 42% 1px no-repeat;
+}
+
+/* the doily: an ivory card with a scalloped lace edge */
+.doily {
+  background: var(--ivory);
+  border: 1px solid var(--gold-light);
+  outline: 6px solid var(--ivory);
+  box-shadow:
+    0 0 0 7px var(--gold-light),
+    0 14px 40px rgba(80, 55, 60, 0.12);
+  padding: 48px clamp(20px, 5vw, 64px);
+  position: relative;
+  margin: 28px 7px;
+}
+
+.doily::before,
+.doily::after {
+  content: "";
+  position: absolute;
+  left: -7px;
+  right: -7px;
+  height: 14px;
+  background: radial-gradient(circle at 50% 0, var(--ivory) 6px, transparent 6.5px) 0 0 / 16px 14px repeat-x;
+}
+.doily::before { top: -20px; transform: scaleY(-1); }
+.doily::after { bottom: -20px; }
+
+/* ---------- purpose ---------- */
+
+.purpose p { margin: 0 0 1.1em; }
+.purpose > p:first-of-type::first-letter {
+  float: left;
+  font-size: 4.2em;
+  line-height: 0.85;
+  padding: 6px 10px 0 0;
+  color: var(--mauve-deep);
+}
+
+.process {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.process h3 {
+  font-family: var(--script);
+  font-weight: 400;
+  font-size: 34px;
+  color: var(--mauve);
+  margin: 0;
+}
+
+.process p { font-size: 17px; margin: 4px 0 0; color: var(--slate); }
+
+.charity {
+  text-align: center;
+  font-style: italic;
+  color: var(--slate);
+  margin-top: 40px;
+  font-size: 18px;
+}
+
+/* ---------- letter ---------- */
+
+.letter {
+  max-width: 720px;
+  margin: 0 auto;
+  font-size: 21px;
+}
+.letter p { margin: 0 0 1em; }
+.letter .signature {
+  font-family: var(--script);
+  font-size: 46px;
+  color: var(--mauve-deep);
+  text-align: right;
+  margin: 8px 0 0;
+}
+.letter .signoff { text-align: right; margin-bottom: 0; font-style: italic; }
+
+/* ---------- gallery ---------- */
+
+.person {
+  margin: 0 auto 80px;
+}
+
+.person-top {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: clamp(24px, 4vw, 48px);
+  align-items: start;
+}
+
+.portrait-frame {
+  padding: 14px;
+  background: linear-gradient(135deg, #c9ad74, #8f7140 40%, #d8c18f 60%, #8a6c3a);
+  box-shadow: 0 10px 30px rgba(50, 35, 30, 0.28);
+}
+.portrait-frame .mat {
+  background: var(--ivory);
+  padding: 18px;
+}
+.portrait-frame img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: 50% 25%; /* keep faces in frame when a tall photo gets trimmed */
+}
+
+.in-memory {
+  font-family: var(--script);
+  font-size: 30px;
+  color: var(--mauve);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.person h3 {
+  font-size: 48px;
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+.dates {
+  letter-spacing: 0.25em;
+  color: var(--slate);
+  font-size: 16px;
+  margin: 6px 0 16px;
+}
+
+.provenance {
+  display: inline-block;
+  font-size: 15px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ivory);
+  background: var(--sage);
+  padding: 4px 14px;
+  margin-bottom: 18px;
+}
+.provenance.donated { background: var(--mauve); }
+
+.bio { font-size: 19px; }
+.bio p { margin: 0 0 0.9em; }
+.bio .submitted { font-style: italic; color: var(--slate); font-size: 17px; }
+
+/* the ashtray listing under each person */
+.tray {
+  display: grid;
+  grid-template-columns: 240px 1fr auto;
+  gap: 24px;
+  align-items: center;
+  margin-top: 28px;
+  padding: 20px;
+  background: var(--ivory);
+  border: 1px solid var(--gold-light);
+}
+.tray img {
+  width: 240px;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 6px 16px rgba(50, 35, 30, 0.2);
+}
+.tray-name { font-size: 22px; margin: 0; }
+.serial {
+  font-size: 15px;
+  letter-spacing: 0.12em;
+  color: var(--slate);
+  margin: 4px 0 0;
+}
+.tray-buy { text-align: right; }
+.price { font-size: 30px; margin: 0; color: var(--ink); }
+.sold-out {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 10px 22px;
+  border: 1px solid #b7aeb0;
+  color: #8f8688;
+  background: #ebe6e3;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-size: 14px;
+  cursor: not-allowed;
+}
+.availability { font-size: 14px; color: var(--slate); margin: 8px 0 0; }
+
+.serial-key {
+  text-align: center;
+  font-size: 16px;
+  color: var(--slate);
+  margin: -8px auto 56px;
+  max-width: 620px;
+}
+.serial-key code {
+  font-family: var(--serif);
+  letter-spacing: 0.2em;
+  font-size: 19px;
+  color: var(--ink);
+}
+
+/* ---------- reviews ---------- */
+
+.reviews {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+.review {
+  background: var(--ivory);
+  border: 1px solid var(--gold-light);
+  padding: 24px 28px;
+  margin: 0;
+}
+.stars { color: var(--gold); letter-spacing: 0.2em; font-size: 18px; }
+.review p { margin: 6px 0 10px; font-style: italic; }
+.review cite { font-style: normal; font-size: 16px; color: var(--slate); }
+
+/* ---------- hashtag ---------- */
+
+.hashtag {
+  text-align: center;
+}
+.hashtag .tag {
+  font-size: clamp(34px, 7vw, 56px);
+  letter-spacing: 0.06em;
+  color: var(--mauve-deep);
+  margin: 8px auto;
+  max-width: none;
+}
+.hashtag p { max-width: 620px; margin: 0 auto 1em; }
+
+/* ---------- contact ---------- */
+
+.contact { text-align: center; }
+.contact p { max-width: 640px; margin: 0 auto 1em; }
+.email-button {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 16px 34px;
+  background: var(--mauve-deep);
+  color: var(--ivory);
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  font-size: 20px;
+  border: 1px solid var(--mauve-deep);
+  box-shadow: inset 0 0 0 3px var(--mauve-deep), inset 0 0 0 4px var(--gold-light);
+}
+.email-button:hover { background: var(--mauve); }
+
+/* ---------- footer ---------- */
+
+.site-footer {
+  text-align: center;
+  padding: 40px 16px 56px;
+  border-top: 1px solid var(--gold-light);
+  font-size: 15px;
+  color: var(--slate);
+}
+.site-footer .wordmark {
+  width: min(320px, 80vw);
+  margin: 0 auto 10px;
+  mix-blend-mode: multiply;
+  filter: brightness(1.05);
+  opacity: 0.8;
+}
+
+/* ---------- reveal page ---------- */
+
+.reveal h1 {
+  font-weight: 500;
+  font-size: clamp(36px, 6vw, 52px);
+  text-align: center;
+  color: var(--mauve-deep);
+  margin: 0 0 16px;
+  line-height: 1.15;
+}
+.reveal p { margin: 0 0 1em; }
+
+form.review-form {
+  display: grid;
+  gap: 18px;
+  margin-top: 24px;
+}
+.review-form label { display: grid; gap: 6px; font-size: 18px; }
+.review-form input,
+.review-form textarea,
+.review-form select {
+  font: inherit;
+  font-size: 18px;
+  padding: 10px 12px;
+  border: 1px solid var(--gold-light);
+  background: #fff;
+  color: var(--ink);
+}
+.review-form textarea { min-height: 150px; resize: vertical; }
+.review-form .check { display: flex; gap: 10px; align-items: flex-start; }
+.review-form .check input { margin-top: 7px; }
+.review-form button {
+  font: inherit;
+  justify-self: start;
+  padding: 14px 32px;
+  background: var(--mauve-deep);
+  color: var(--ivory);
+  border: none;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+}
+.review-form button:hover { background: var(--mauve); }
+
+/* ---------- phones ---------- */
+
+@media (max-width: 760px) {
+  body { font-size: 18px; }
+  .person-top { grid-template-columns: 1fr; }
+  .process { grid-template-columns: 1fr; }
+  .reviews { grid-template-columns: 1fr; }
+  .tray { grid-template-columns: 110px 1fr; }
+  .tray img { width: 110px; }
+  .tray-buy { grid-column: 1 / -1; text-align: left; }
+  .person h3 { font-size: 40px; }
+  h2 { font-size: 30px; }
+}

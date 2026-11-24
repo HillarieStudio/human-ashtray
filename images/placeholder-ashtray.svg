@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">
+  <rect width="600" height="600" fill="#ebe2d6"/>
+  <ellipse cx="300" cy="318" rx="250" ry="236" fill="#cdbfb0" opacity="0.6"/>
+  <circle cx="300" cy="300" r="235" fill="#c8b5a3" stroke="#a8927e" stroke-width="4"/>
+  <circle cx="300" cy="300" r="185" fill="#d9cbbb" stroke="#b29d89" stroke-width="3"/>
+  <g fill="#ebe2d6" stroke="#a8927e" stroke-width="3">
+    <rect x="282" y="56" width="36" height="60" rx="18"/>
+    <rect x="282" y="56" width="36" height="60" rx="18" transform="rotate(120 300 300)"/>
+    <rect x="282" y="56" width="36" height="60" rx="18" transform="rotate(240 300 300)"/>
+  </g>
+  <ellipse cx="300" cy="300" rx="78" ry="98" fill="#cbbaa8" stroke="#ac9785" stroke-width="2"/>
+  <text x="300" y="440" text-anchor="middle" font-family="Georgia, serif" font-size="24" fill="#7d6a5c" font-style="italic">Photograph forthcoming</text>
+</svg>
